@@ -2,7 +2,7 @@ const { transports, Logger } = require('winston');
 const WinstonDailyRotateFile = require('winston-daily-rotate-file');
 const moment = require('moment');
 
-const env = process.env.ENV || 'development';
+const env = process.env.NODE_ENV;
 const { toUTCDate, getAppName } = rootRequire('utils');
 
 const appName = getAppName();
@@ -31,7 +31,7 @@ const currentTransports = [
   }),
 ];
 
-if (env === 'development') {
+if (['development', 'staging'].indexOf(env) !== -1) {
   currentTransports.push(new transports.Console({
     colorize: true,
     timestamp: toUTCDate(moment().format()),

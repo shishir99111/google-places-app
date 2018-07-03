@@ -21,5 +21,5 @@ require('./api/placesApi')(router);
  * @param {object} app Express instance
  */
 module.exports = (app) => {
-  app.use('/api/v1', router);
+  app.use(`/hdfc-api/${process.env.NODE_ENV}/v1`, router);
 };
